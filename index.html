@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donut Chart</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="build/d3-donut-chart.js"></script>
+</head>
+
+<body>
+<div id="testdiv">
+</div>
+
+<style>
+
+    body {
+        background-color: #000000;
+    }
+
+    #testdiv{
+        display: flex;
+        flex-direction : row;
+        background-color:#3A3C48;
+        height: 400px;
+        width:600px;
+    }
+
+    .legends {
+        color : #A4A5AB;
+        font-size : 14px;
+    }
+    .total-text {
+        fill : #A4A5AB;
+        font-size: 20px;
+    }
+    .donut-legends-container {
+        align-self: center;
+    }
+    .legend-circle{
+        cursor: pointer;
+    }
+    .legends thead th {
+        padding-right: 30px;
+        padding-bottom : 5px;
+    }
+    .legends tbody td {
+        padding-bottom : 5px;
+    }
+
+</style>
+<script>
+    var dim = {
+        width: 300,
+        height: 400
+
+    }
+    var chartColors = ["#007e43", "#00d84f", "#b7ff2f", "#fdfe1a", "#e0aa00", "#c68100"];
+
+    var data = [
+        {
+            "department" : "Purchase",
+            "employees": 200
+        },
+        {
+            "department" : "Finance",
+            "employees": 300
+        },
+        {
+            "department" : "Human Resources",
+            "employees": 20
+        },
+        {
+            "department" : "Sales",
+            "employees": 100
+        },
+        {
+            "department" : "Administration",
+            "employees": 50
+        }
+    ];
+
+    // To dynamically create column names from keys of above data array
+    var enumTableColumns = {
+        "department" : "Department",
+        "employees" : "Employee Count"
+    };
+
+    var targetEl = d3.selectAll('#testdiv')
+            .append('div')
+            .classed('donut-chart-container',true);
+
+    //initialize chart parameters like svg height, width, targetEl, colors scale
+    var chart = d3.donutChart()
+            .targetEl(targetEl)
+            .width(dim.width)
+            .height(dim.height)
+            .colorScale(chartColors)
+            .data(data);
+
+    //Render the chart
+    var div =  chart.call();
+
+    //Create a container for chart legends
+    var legendsContainer = d3.selectAll('#testdiv')
+            .append('div')
+            .classed('donut-legends-container',true);
+
+    //Render chart legends
+    chart.renderLegends(legendsContainer,data,enumTableColumns);
+
+
+
+</script>
+</body>
+</html>

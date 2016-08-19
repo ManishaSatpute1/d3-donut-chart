@@ -4,7 +4,7 @@
 
 ## Installing
 
-If you use NPM, `npm install d3-foo`. Otherwise, download the [latest release](https://github.com/d3/d3-foo/releases/latest).
+If you use NPM, `npm install d3-donut-chart`. Otherwise, download the [latest release](https://github.com/d3/d3-foo/releases/latest).
 
 ## API Reference
 
